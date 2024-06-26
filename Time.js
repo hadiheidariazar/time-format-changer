@@ -11,10 +11,9 @@ const timeFormatChanger = (secondsValue = 0, language = 'en-US') => {
     const { day, hours, minutes, seconds } = calculateTimeParts(secondsValue);
     const timeArray = [day, hours, minutes, seconds].map(num => num.toLocaleString(language, { minimumIntegerDigits: 2 }));
 
-    const firstNonZeroIndex = timeArray.findIndex(num => num !== '00');
-    const formattedTimeArray = timeArray.slice(firstNonZeroIndex);
+    (day === 0) && timeArray.shift((0).toLocaleString(language)); hours === 0 && timeArray.shift((0).toLocaleString(language))
 
-    return formattedTimeArray.join(':');
+    return timeArray.join(':');
 }
 
 
